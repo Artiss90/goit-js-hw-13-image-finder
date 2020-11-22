@@ -14,11 +14,24 @@
         type="text"
         name="query"
         autocomplete="off"
-        placeholder="Search images..."
+        placeholder="Поиск фото..."
       />
     </form>
 
     <ul class="gallery">
     </ul>
+    <button
+      type="button"
+      class="btn btn-primary button"
+      data-action="load-more"
+    >
+      <span
+        class="spinner-border spinner-border-sm spinner is-hidden"
+        role="status"
+        aria-hidden="true"
+      ></span>
+
+      <span class="label">Показать ещё</span>
+    </button>
   </body>
 </html>
