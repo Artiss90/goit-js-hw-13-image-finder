@@ -1,2 +1,2 @@
 import './styles.css';
-import './js/url'
+import './js/base';
