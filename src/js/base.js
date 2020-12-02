@@ -20,10 +20,13 @@ refs.formSearchRef.addEventListener('submit', searchImg);
 function showMore(evt) {
     evt.preventDefault();
    const q = nowQuery;
-const page = countPage;
-    fetchPixabay(q, page)
-    countPage +=1;
-    window. scrollTo({top: 0, behaviour: "smooth"});
+   const page = countPage;
+   fetchPixabay(q, page)
+    countPage += 1;
+    setTimeout(() => {
+    window.scrollTo({ top: document.body.scrollHeight, behaviour: "smooth" });    
+    console.log(document.body.scrollHeight);
+    }, 2000);
 };
 
 function searchImg(evt) {
