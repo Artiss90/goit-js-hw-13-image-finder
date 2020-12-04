@@ -14,20 +14,20 @@ const loadMoreBtn = new LoadMoreBtn({
   let countPage = 0;
   let nowQuery = '';
   
-refs.loadMoreBtnRef.addEventListener('click', showMore);
-refs.formSearchRef.addEventListener('submit', searchImg);
+  refs.formSearchRef.addEventListener('submit', searchImg);
+//   refs.loadMoreBtnRef.addEventListener('click', showMore);
 
-function showMore(evt) {
-    evt.preventDefault();
-   const q = nowQuery;
-   const page = countPage;
-   fetchPixabay(q, page)
-    countPage += 1;
-    setTimeout(() => {
-    window.scrollTo({ top: document.body.scrollHeight, behaviour: "smooth" });    
-    console.log(document.body.scrollHeight);
-    }, 2000);
-};
+// function showMore(evt) {
+//     evt.preventDefault();
+//    const q = nowQuery;
+//    const page = countPage;
+//    fetchPixabay(q, page)
+//     countPage += 1;
+//     setTimeout(() => {
+//     window.scrollTo({ top: document.body.scrollHeight, behaviour: "smooth" });    
+//     console.log(document.body.scrollHeight);
+//     }, 2000);
+// };
 
 function searchImg(evt) {
     evt.preventDefault();
@@ -53,3 +53,20 @@ async function fetchPixabay(q,page, language='ru') {
 function clearArticlesContainer(refs) {
     refs.innerHTML = '';
   }
+
+const onEntry = entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && nowQuery !== '') {
+        console.log('Пора грузить еще статьи' + Date.now());
+        console.log(countPage);
+        fetchPixabay(nowQuery, countPage);
+        countPage += 1;
+    }
+  });
+};
+
+const options = {
+  rootMargin: '200px',
+};
+const observer = new IntersectionObserver(onEntry, options);
+observer.observe(refs.sentinelRef);
