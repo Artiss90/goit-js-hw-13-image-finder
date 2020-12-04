@@ -15,19 +15,20 @@ const loadMoreBtn = new LoadMoreBtn({
   let nowQuery = '';
   
   refs.formSearchRef.addEventListener('submit', searchImg);
-//   refs.loadMoreBtnRef.addEventListener('click', showMore);
+  refs.loadMoreBtnRef.addEventListener('click', showMore);
 
-// function showMore(evt) {
-//     evt.preventDefault();
-//    const q = nowQuery;
-//    const page = countPage;
-//    fetchPixabay(q, page)
-//     countPage += 1;
-//     setTimeout(() => {
-//     window.scrollTo({ top: document.body.scrollHeight, behaviour: "smooth" });    
-//     console.log(document.body.scrollHeight);
-//     }, 2000);
-// };
+function showMore(evt) {
+    evt.preventDefault();
+   const q = nowQuery;
+   const page = countPage;
+   fetchPixabay(q, page)
+  countPage += 1;
+  /*закоментил автоскрол вниз из-за добавления бесконечного скрола*/
+    // setTimeout(() => {
+    // window.scrollTo({ top: document.body.scrollHeight, behaviour: "smooth" });    
+    // console.log(document.body.scrollHeight);
+    // }, 2000);
+};
 
 function searchImg(evt) {
     evt.preventDefault();
